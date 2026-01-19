@@ -1,0 +1,20 @@
+// arquivo de estilo
+
+import MyComponent from "./MyComponent";
+
+
+
+const FirstComponent = () => {
+
+    return(
+        <div>
+            {/* Algum comentário */}
+            <h1>My first component</h1>
+            <p className='teste'>Meu texto</p>
+            <MyComponent/>
+
+        </div>
+    );
+};
+
+export default FirstComponent;

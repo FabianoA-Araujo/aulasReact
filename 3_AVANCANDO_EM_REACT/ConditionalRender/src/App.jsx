@@ -9,6 +9,10 @@ import ShowUserName from './components/ShowUserName'
 import CarDetails from './components/CarDetails'
 import Fragments from './components/Fragments'
 import Container from './components/Container'
+import ExecuteFunction from './components/ExecuteFunction'
+import Message from './components/Message'
+import ChangeMessageState from './components/ChangeMessageState'
+import DesafioQuatro from './components/DesafioQuatro'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +23,22 @@ function App() {
     {id: 1, brand: "Honda", color: "preta", km: 0, newCar: true  },
     {id: 2, brand: "Chevrolet", color: "prata", km: 198432, newCar: false  },
     {id: 3, brand: "Peugeot", color: "vermelha", km: 98431, newCar: false  },
+  ];
+
+  function showMassage () {
+    console.log("Evento do componente pai!")
+  };
+
+  const [message, setMessage] = useState ("");
+
+  const handleMessage = (msg) => {
+    setMessage(msg);
+  }
+
+  const habilitationUsers = [
+    {id: 1, name: "Fabiano Alves Araujo", age: 32, profession: "Developer" },
+    {id: 2, name: "Luana Rodrigues Tulio Araujo", age: 30, profession: "Teacher" },
+    {id: 3, name: "Francisco Rodrigues Alves", age: 2, profession: "Student" },
   ];
 
   return (
@@ -57,6 +77,7 @@ function App() {
       {/* loop com array de objetos */}
       {cars.map((car) =>(
         <CarDetails
+         key={car.id} //id aqui só para zerar o warn do React.
          brand={car.brand}
          color={car.color}
          km={car.km}
@@ -73,6 +94,21 @@ function App() {
       <Container myValue = "testando 2">
         <h5>Testando o container.</h5>
       </Container>
+      {/* Executar função como prop */}
+      <ExecuteFunction myFunction={showMassage}/>
+      {/* State lift */}
+      <Message msg={message}/>
+      <ChangeMessageState handleMessage={handleMessage}/>
+      {/* Desafio 4 */}
+      {habilitationUsers.map((personas) => (
+          <DesafioQuatro
+            key={personas.id}
+            name={personas.name}
+            age={personas.age}
+            profession={personas.profession}
+          />
+      ))}        
+  
     </>
   )
 }
